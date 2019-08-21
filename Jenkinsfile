@@ -4,6 +4,7 @@ pipeline {
         stage ('deployment') {
             steps {
                 node ('kubemaster') {
+                    git 'https://github.com/vegirajukanishka/kubedeploy.git'
                     sh label: '',script: '''sudo kubectl apply -f rc.yml.'''
                     sh label: '',script: '''sudo kubectl apply -f service.yml.'''
                 }
