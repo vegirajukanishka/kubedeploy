@@ -4,10 +4,11 @@ pipeline {
         stage ('deployment') {
             steps {
                 node ('kubemaster') {
-                    sh label:'',script: 'sudo docker login --username kanishkaraju --password kanishka@13'
-                    sh label: '',script: 'sudo docker pull kanishkaraju/raju:gol.5'
+                    git https://github.com/vegirajukanishka/kubernetesfiles.git
                     sh label: '',script: 'sudo kubectl apply -f rc.yml'
+                    sh label: '',script: 'sudo kubectl get rc'
                     sh label: '',script: 'sudo kubectl apply -f service.yml'
+                    sh label: '',script: 'sudo kubectl get svc'
                 }
             }
         }
